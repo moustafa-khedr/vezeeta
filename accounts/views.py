@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import Login_Form
 from django.contrib.auth import authenticate, login
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def doctors_list(request):
@@ -34,3 +34,9 @@ def user_login(request):
     else:
         form = Login_Form()
     return render(request, 'registration/login.html', {'form': form})
+
+@login_required()
+def my_profile(request):
+
+    return render(request, 'registration/my_profile.html', {
+    })

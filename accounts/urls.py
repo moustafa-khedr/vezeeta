@@ -5,5 +5,6 @@ app_name = 'accounts'
 urlpatterns = [
     path('doctors/', views.doctors_list, name='doctors_list'),
     path('login/', views.user_login, name='user_login'),
+    path('my_profile/', views.my_profile, name='my_profile'),
     path('<slug:slug>/', views.doctor_detail, name='doctor_detail'),
 ]

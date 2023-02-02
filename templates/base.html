@@ -52,9 +52,9 @@
                                 <div class="main-menu  d-none d-lg-block" style="margin-down: 1rem">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="">Book your doctor</a></li>
+                                            <li><a href="{% url 'accounts:doctors_list' %}">Book your doctor</a></li>
                                             <li><a href="">Articles</a></li>
-                                            <li><a href="">personal page </a></li>
+                                            <li><a href="{% url 'accounts:my_profile' %}">personal page </a></li>
                                             <li><a href="contact.html">call us</a></li>
                                         </ul>
                                     </nav>
@@ -62,16 +62,22 @@
                             </div>
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="Appointment">
-                                    <div class="phone_num d-none d-xl-block"></div>
-                                    <div class="d-none d-lg-block">
-                                        <a class="boxed-btn3" href="">Presented yourself</a>
-                                    </div>
-                                    <div class="d-none d-lg-block">
-                                        <a class="boxed-btn3" style="background-color: crimson;margin-left: 4px;margin-right: 4px;" href="">Sign_in</a>
-                                    </div>
-                                    <div class="d-none d-lg-block">
-                                        <a class="boxed-btn3" style="background-color: crimson;" href="">Register</a>
-                                    </div>
+
+                                    {% if user.is_authenticated %}
+                                        <div class="phone_num d-none d-xl-block"></div>
+                                        <div class="d-none d-lg-block">
+                                            <a class="boxed-btn3" href="">Presented yourself</a>
+                                        </div>
+                                    {%  else %}
+
+                                        <div class="d-none d-lg-block">
+                                            <a class="boxed-btn3" style="background-color: crimson;margin-left: 4px;margin-right: 4px;" href="{% url 'accounts:user_login' %}">Sign_in</a>
+                                        </div>
+                                        <div class="d-none d-lg-block">
+                                            <a class="boxed-btn3" style="background-color: crimson;" href="">Register</a>
+                                        </div>
+                                    {%  endif %}
+
                                 </div>
                             </div>
                             <div class="col-12">
