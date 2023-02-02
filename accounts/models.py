@@ -8,7 +8,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, verbose_name='user', on_delete=models.CASCADE)
     name = models.CharField('name :', max_length=50)
     who_i = models.TextField('who_am_I :', max_length=250)
-    price = models.IntegerField('Examination price :')
+    price = models.IntegerField('Examination price :', blank=True, null=True)
+    image = models.ImageField('Personal Image', upload_to='profile')
 
     class Meta:
         verbose_name = 'Profile'
