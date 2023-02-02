@@ -120,18 +120,20 @@
 
                                         {% if doctor.profile.image %}
                                             <img src="{{ doctor.profile.image.url }}"  width="100" height="100">
+                                        {% else %}
+                                            <img src="{% static 'static_file/img/candiateds/2.png' %}"  width="100" height="100">
                                         {% endif %}
                                     </div>
                                     <div class="jobs_conetent" style=" margin-left: 20px;>
-                                        <a href=""><h5>Doctor</h5></a>
-                                        <h6>subtitle</h6>
+                                        <a href=""><h5>Doctor {{ doctor.profile.name }}</h5></a>
+                                        <h6>{{ doctor.profile.subtitle }} </h6>
                                         <div class="links_locat">
                                             <div class="location">
-                                                <p> <i class="fas fa-briefcase-medical"></i> Doctor <span style="color: blue ;">doctor</span>specialized in<span style="color: blue;">Specialist_doctor</span> </p>
-                                                <p> <i class="fa fa-map-marker"></i>address : address_detail</p>
-                                                <p> <i class="fa fa-map-marker"></i> detection : <span style="color: blue;">price</span>pound </p>
-                                                <p> <i class="fa fa-clock-o"></i> waiting time : <span style="color: blue;">Waiting_time</span> hour</p>
-                                                <p> <i class="fa fa-clock-o"></i> working hours : <span style="color: blue;">working_hours</span> hour</p>
+                                                <p> <i class="fas fa-briefcase-medical"></i> Doctor <span style="color: blue ;">{{ doctor.profile.doctor }}</span> specialized in <span style="color: blue;">{{ doctor.profile.specialist_doctor }}</span> </p>
+                                                <p> <i class="fa fa-map-marker"></i>{{ doctor.profile.address }} : {{ doctor.profile.address_detail }}</p>
+                                                <p> <i class="fa fa-map-marker"></i> detection : <span style="color: blue;">{{ doctor.profile.price }}</span> pound </p>
+                                                <p> <i class="fa fa-clock-o"></i> waiting time : <span style="color: blue;">{{ doctor.profile.waiting_time }} </span> min</p>
+                                                <p> <i class="fa fa-clock-o"></i> working hours : <span style="color: blue;">{{ doctor.profile.working_hours }}</span> hour</p>
                                                 <p> <i class="fa fa-clock-o"></i>Normal call price : <span style="color: blue;"> number_phone </span>  </p>
                                             </div>
                                         </div>
