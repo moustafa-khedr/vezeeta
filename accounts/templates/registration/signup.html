@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container" style="margin-down: 1rem">
+        <div class="row">
+        </div>
+    </div>
+</div>
+<!--/ bradcam_area  -->
+
+<div class="container">
+    <div class="signup">
+    <div class="col-md-15 " >
+        <form method="POST" enctype="multipart/form-data" style="margin-top: 50px;">
+            <h4 class="auth-header">Signup</h4>
+            {% csrf_token %}
+
+                <div class="form-group">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.email|as_crispy_field }}
+                </div>
+                <div class="row">
+                    <div class="col-sm-6" >
+                        <div class="form-group">
+                            <div class="form-group">
+                                 {{ form.first_name|as_crispy_field }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" >
+                        <div class="form-group">
+                            {{ form.last_name|as_crispy_field }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6" >
+                        <div class="form-group">
+                            <div class="form-group">
+                                 {{ form.password1|as_crispy_field }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" >
+                        <div class="form-group">
+                            {{ form.password2|as_crispy_field }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="buttons-w  "><button type="submit" class="boxed-btn3 w-100">Signup</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+    </div>
+</div>
+
+
+{% endblock body %}
