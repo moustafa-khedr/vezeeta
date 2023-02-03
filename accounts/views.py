@@ -1,7 +1,7 @@
 from .models import Profile
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .forms import Login_Form
+from .forms import Login_Form, UpdateUserForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -39,4 +39,21 @@ def user_login(request):
 def my_profile(request):
 
     return render(request, 'registration/my_profile.html', {
+    })
+
+
+def update_profile(request):
+    user_form = UpdateUserForm(instance=request.user)
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            print('done save')
+            return redirect('accounts:doctors_list')
+        else:
+            user_form = UpdateUserForm(instance=request.user)
+            print('not valid')
+
+    return render(request, 'registration/update_profile.html', {
+        'user_form':user_form
     })
