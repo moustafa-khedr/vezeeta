@@ -1,7 +1,7 @@
 from .models import Profile
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .forms import Login_Form, UserSignupForm, UpdateUserForm
+from .forms import Login_Form, UserSignupForm, UpdateUserForm, UpdateProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -66,16 +66,22 @@ def signup(request):
 
 def update_profile(request):
     user_form = UpdateUserForm(instance=request.user)
+    profile_form = UpdateProfileForm(instance=request.user.profile)
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
-        if user_form.is_valid():
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid and profile_form.is_valid:
             user_form.save()
-            print('done save')
-            return redirect('accounts:doctors_list')
+            print('user save')
+            profile_form.save()
+            print('profile save')
+            return redirect('accounts:my_profile')
         else:
             user_form = UpdateUserForm(instance=request.user)
+            profile_form = UpdateProfileForm(instance=request.user.profile)
             print('not valid')
 
     return render(request, 'registration/update_profile.html', {
-        'user_form': user_form
+        'user_form': user_form,
+        'profile_form': profile_form,
     })
